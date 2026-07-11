@@ -1,4 +1,4 @@
-– # Deploys the docs/ folder from the PRIVATE AssetRegisterOCSW repo to GitHub Pages.
+# Deploys the docs/ folder from the PRIVATE AssetRegisterOCSW repo to GitHub Pages.
 #
 # How it works:
 #   1. Checks out this repository (for any auxiliary files here).
