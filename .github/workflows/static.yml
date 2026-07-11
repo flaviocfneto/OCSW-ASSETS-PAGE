@@ -1,35 +1,41 @@
-# Deploys the docs/ folder from the PRIVATE AssetRegisterOCSW repo to GitHub Pages.
+# Builds the Vite/Preact frontend from the PRIVATE AssetRegisterOCSW repo
+# (app/ folder) and deploys the built dist/ to GitHub Pages.
 #
-# How it works:
-#   1. Checks out this repository (for any auxiliary files here).
-#   2. Checks out the private repo into ./_private using ASSETREGISTER_PAT.
-#   3. Copies _private/docs into ./_site.
-#   4. Uploads ./_site as the Pages artifact and deploys it.
+# WHILE ACTIONS ALLOWANCE IS EXHAUSTED:
+#   This workflow is set to workflow_dispatch + repository_dispatch only —
+#   no auto-run on push or schedule — so it does not consume minutes on
+#   its own. Pages is served directly from files committed to this repo's
+#   main branch (Settings -> Pages -> Source = "Deploy from a branch",
+#   folder "/ (root)").
+#
+# TO RE-ENABLE AUTO DEPLOY:
+#   1. Restore your Actions allowance.
+#   2. In this repo's Settings -> Pages, switch Source back to
+#      "GitHub Actions".
+#   3. Uncomment the schedule / push triggers below.
+#   4. In the private repo, un-comment the push filter in
+#      .github/workflows/notify-pages.yml.
 #
 # Required repository secret (Settings -> Secrets and variables -> Actions):
 #   ASSETREGISTER_PAT — fine-grained PAT with Contents:Read on
 #                       flaviocfneto/AssetRegisterOCSW.
-#
-# Required Pages setting (Settings -> Pages):
-#   Build and deployment -> Source = "GitHub Actions".
-name: Deploy AssetRegisterOCSW docs to Pages
+name: Build & deploy AssetRegisterOCSW frontend to Pages
 
 on:
-  # Manual run from the Actions tab.
+  # Manual run from the Actions tab. Safe to leave on.
   workflow_dispatch:
 
-  # Daily safety-net sync (00:00 UTC). Adjust or remove as needed.
-  schedule:
-    - cron: '0 0 * * *'
-
-  # Push to this repo's default branch (e.g. workflow edits).
-  push:
-    branches: ["main"]
-
-  # Triggered from the PRIVATE repo whenever docs/ changes.
-  # Payload event_type must be "deploy-site".
+  # Triggered from the PRIVATE repo (event_type "deploy-site"). Safe to
+  # leave on — the private-side dispatch workflow is also currently
+  # manual-only.
   repository_dispatch:
     types: [deploy-site]
+
+  # Uncomment when Actions allowance returns:
+  # schedule:
+  #   - cron: '0 0 * * *'
+  # push:
+  #   branches: ["main"]
 
 permissions:
   contents: read
@@ -58,16 +64,26 @@ jobs:
           ref: main
           path: _private
 
-      - name: Stage docs/ into _site
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: _private/app/package-lock.json
+
+      - name: Install & build
+        working-directory: _private/app
         run: |
           set -euo pipefail
-          if [ ! -d "_private/docs" ]; then
-            echo "::error::_private/docs not found in the private repo checkout."
-            exit 1
-          fi
+          npm ci
+          npm run build
+
+      - name: Stage dist/ into _site
+        run: |
+          set -euo pipefail
           rm -rf _site
           mkdir -p _site
-          cp -R _private/docs/. _site/
+          cp -R _private/app/dist/. _site/
           echo "Staged files:"
           ls -la _site
 
