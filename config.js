@@ -14,12 +14,12 @@ window.ASSET_APP_CONFIG = {
   //   Deploy > New deployment > Web app  (Execute as: Me, Access: Anyone)
   //   Must end in /exec
   EXEC_URL:
-    'https://script.google.com/macros/s/AKfycbzZ8aUcOMabO99CZeq4x0d2o79QmAJPwC46j3PRPa7mIA3lkYhz1VprrhKqXjQqQnhc/exec',
+    'https://script.google.com/a/macros/ocsw.co.uk/s/AKfycbx_xAXNQANF2_OleRyHsaSP5ZK7G-eeSbUTYQcgJJBU_vkf4UttR3K1CgD2jA60PX8TMg/exec',
 
   // OAuth 2.0 Web client ID from Google Cloud Console.
   //   APIs & Services > Credentials > OAuth client ID (Web application)
   //   Must end in .apps.googleusercontent.com
   //   The SAME value must be set in Apps Script via
   //   "Asset Manager > Deployment & Config > Set Sign-In Client ID".
-  CLIENT_ID: 'REPLACE_WITH_OAUTH_CLIENT_ID.apps.googleusercontent.com',
+  CLIENT_ID: '729620945216-q6lln9nvd68phdd792ua7ir8om5msu0t.apps.googleusercontent.com',
 };
