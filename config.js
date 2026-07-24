@@ -14,7 +14,7 @@ window.ASSET_APP_CONFIG = {
   //   Deploy > New deployment > Web app  (Execute as: Me, Access: Anyone)
   //   Must end in /exec
   EXEC_URL:
-    'https://script.google.com/macros/s/AKfycby2h5Nimu_-MDq5YlzVM6rKUjBu9nI4H5ElAshC-NSKWOFyxK9lKBv-E6zxMSg0413rIA/exec',
+    'https://script.google.com/macros/s/AKfycbySOV3hIY3pZrmMDJwr0xu2g3OpBfp4aFQydEMr19BTS2W8EfguORNm3zCdqs1y0c8MgA/exec',
 
   // OAuth 2.0 Web client ID from Google Cloud Console.
   //   APIs & Services > Credentials > OAuth client ID (Web application)
