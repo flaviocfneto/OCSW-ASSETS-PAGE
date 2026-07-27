@@ -1,5 +1,5 @@
 {
-  "_readme": "Admin-editable runtime settings. Edit this file in the AssetRegisterOCSW repo; it is copied to the OCSW-ASSETS-PAGE repo on deployment (like config.js) and served publicly at <pages-url>/settings.json. The backend reads it via UrlFetch (cached ~10 min). NEVER put secrets here \u2014 it is public. The diagnostic key stays a private Script Property (Asset Manager > Deployment & Config > Set Diagnostic Key). Drive folder ids are acceptable (access is gated by Drive permissions, not the id). A tier set to 0 is disabled.",
+  "_readme": "Admin-editable runtime settings. Edit this file in the AssetRegisterOCSW repo; it is copied to the OCSW-ASSETS-PAGE repo on deployment (like config.js) and served publicly at <pages-url>/settings.json. The backend reads it via UrlFetch (cached ~10 min). NEVER put secrets here — it is public. The diagnostic key stays a private Script Property (Asset Manager > Deployment & Config > Set Diagnostic Key). Drive folder ids are acceptable (access is gated by Drive permissions, not the id). A tier set to 0 is disabled.",
   "backup": {
     "enabled": true,
     "folderId": "1TXD4ibm6Qs-XFUq18p_dlUegt6dG4ZVJ",
