@@ -12,5 +12,11 @@
     "enabled": false,
     "folderId": "",
     "retentionDays": 0
+  },
+  "qrCodes": {
+    "enabled": true,
+    "folderId": "1TtArHx4c6cjvzXX-HKec6KBwL-QVQqhG",
+    "pdfFolderId": "1yXlW3i5CQxDW52_WXqJMcOa3VFLs-D-q",
+    "exportImages": true
   }
 }
