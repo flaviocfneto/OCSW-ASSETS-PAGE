@@ -12,5 +12,10 @@
     "enabled": false,
     "folderId": "",
     "retentionDays": 0
+  },
+  "qrCodes": {
+    "enabled": false,
+    "folderId": "",
+    "exportImages": true
   }
 }
